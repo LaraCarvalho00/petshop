@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+
+
+  postgres:
+    image: bitnami/postgresql:latest
+    environment:
+      - POSTGRES_USER=petshop
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=petshop
+    volumes:
+      - pgdata:/bitnami/postgresql
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U petshop"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    networks:
+      - app_net
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  pgdata:
+
+
+networks:
+  app_net:
+    driver: bridge

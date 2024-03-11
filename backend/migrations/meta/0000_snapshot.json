@@ -1,0 +1,81 @@
+{
+  "id": "81e1baf7-7774-48c2-ab5c-6554906999a4",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "petshops": {
+      "name": "petshops",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "distance_in_meters": {
+          "name": "distance_in_meters",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "big_breed_price_at_week": {
+          "name": "big_breed_price_at_week",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "small_breed_price_at_week": {
+          "name": "small_breed_price_at_week",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "big_breed_price_at_weekend": {
+          "name": "big_breed_price_at_weekend",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "small_breed_price_at_weekend": {
+          "name": "small_breed_price_at_weekend",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
