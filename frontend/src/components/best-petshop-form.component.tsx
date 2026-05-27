@@ -23,11 +23,13 @@ export const BestPetshopForm: FunctionComponent<Props> = ({ onSubmit }) => {
   const [bigDogs, setBigDogs] = useState(0);
   const [smallDogs, setSmallDogs] = useState(0);
 
+  // TODO(code-review): validar que ao menos um cachorro foi informado antes do submit evita chamadas sem sentido ao backend.
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
   };
 
   const handleBigDogsChange = (_: string, value: number) => {
+    // TODO(code-review): normalizar NaN quando o campo numerico ficar vazio evita enviar dados invalidos.
     setBigDogs(value);
   };
 
@@ -36,6 +38,7 @@ export const BestPetshopForm: FunctionComponent<Props> = ({ onSubmit }) => {
   };
 
   const handleSubmit = () => {
+    // TODO(code-review): bloquear envio com zero cachorros evita chamadas sem sentido ao backend.
     onSubmit({
       bigDogs,
       smallDogs,
@@ -45,6 +48,7 @@ export const BestPetshopForm: FunctionComponent<Props> = ({ onSubmit }) => {
 
   return (
     <>
+      {/* TODO(code-review): usar um form com onSubmit melhoraria acessibilidade e permitiria envio pelo Enter. */}
       <Box
         as={Flex}
         align="center"

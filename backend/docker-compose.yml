@@ -6,6 +6,7 @@ services:
   postgres:
     image: bitnami/postgresql:latest
     environment:
+      # TODO(code-review): mover credenciais para variaveis de ambiente evita valores sensiveis fixos no compose.
       - POSTGRES_USER=petshop
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=petshop

@@ -1,6 +1,7 @@
 import { petshop } from "../../db/schemas";
 import { db } from "../../db/client";
 
+// TODO(code-review): separar os dados de seed em fixture melhora reuso em testes e evita duplicacao de cenarios.
 /**
  * Reset database
  */
