@@ -17,8 +17,10 @@ export const IndexPage = () => {
   const [result, setResult] = useState<CalculateResponse | null>(null);
 
   const calculate = async (data: CalculateRequest) => {
+    // TODO(code-review): adicionar loading e tratamento de erro daria feedback ao usuario durante falhas na API.
     const { bigDogs, smallDogs, date } = data;
     const res = await axios.post<CalculateResponse>(
+      // TODO(code-review): validar VITE_BACKEND_URL ou fornecer fallback local evita chamadas para undefined/calculate-petshop.
       `${import.meta.env.VITE_BACKEND_URL}/calculate-petshop`,
       {
         bigDogs,
@@ -43,6 +45,7 @@ export const IndexPage = () => {
 />
         <Heading>Canil do Sr. Eduardo</Heading>
         <Text fontSize="2xl" mb={10}>
+          {/* TODO(code-review): corrigir encoding dos textos para UTF-8 melhora a apresentacao da interface. */}
           Utilize o formulário abaixo para descobrir qual o melhor petshop para
           levar os dogs :)
         </Text>

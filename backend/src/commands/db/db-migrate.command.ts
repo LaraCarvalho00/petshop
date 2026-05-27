@@ -3,6 +3,7 @@ import { env } from "../../env";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
 
+// TODO(code-review): tratar erros de migracao com mensagens mais claras ajuda troubleshooting em ambientes de deploy.
 const client = postgres(env.DATABASE_URL, {
   max: 1,
 });

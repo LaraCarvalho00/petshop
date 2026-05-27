@@ -1,3 +1,4 @@
+// TODO(code-review): compartilhar ou gerar estes tipos a partir da API reduz risco de divergencia entre frontend e backend.
 export type CalculateRequest = {
   bigDogs: number;
   smallDogs: number;

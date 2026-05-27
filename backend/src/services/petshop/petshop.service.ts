@@ -4,9 +4,11 @@ import {
   CalculateBestPetshopOutput,
 } from "./petshop.types";
 
+// TODO(code-review): extrair o acesso ao banco para um Repository/DAO e deixar este service focado na regra de negocio.
 const getAllPetshops = async () => {
   const petshops = await db.query.petshop.findMany();
 
+  // TODO(code-review): trocar esta checagem por petshops.length === 0, pois array vazio nao entra neste if.
   if (!petshops) {
     throw new Error("No petshops found");
   }
@@ -19,7 +21,9 @@ const calculateBestPetshop = async ({
   smallDogs,
   date,
 }: CalculateBestPetshopInput) => {
+  // TODO(code-review): receber a lista de petshops por parametro facilitaria testes unitarios sem depender do banco.
   const petshops = await getAllPetshops();
+  // TODO(code-review): padronizar timezone ou parser de data evita classificar incorretamente dias uteis e fins de semana.
   const isWeekend = date.getDay() === 0 || date.getDay() === 6; // 0 is Sunday, 6 is Saturday
   let result: CalculateBestPetshopOutput | null = null;
 
@@ -33,6 +37,7 @@ const calculateBestPetshop = async ({
       : petshop.smallBreedPriceAtWeek;
 
     const totalPrice = bigDogPrice * bigDogs + smallDogPrice * smallDogs;
+    // TODO(code-review): extrair o calculo do preco para calculateTotalPrice deixaria esta regra mais legivel e testavel.
 
     if (!result) {
       result = {
@@ -43,6 +48,7 @@ const calculateBestPetshop = async ({
     }
 
     const isCheaper = totalPrice < result?.totalPrice;
+    // TODO(code-review): extrair a regra de desempate para isBetterPetshopOption deixaria a intencao do dominio mais clara.
     const isSamePriceButCloser =
       result?.totalPrice === totalPrice &&
       petshop.distance < result.petshop.distance;
@@ -55,6 +61,7 @@ const calculateBestPetshop = async ({
     }
   }
 
+  // TODO(code-review): explicitar no tipo que o retorno pode ser null ou lancar erro de dominio para lista vazia.
   return result;
 };
 
